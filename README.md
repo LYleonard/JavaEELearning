@@ -2,7 +2,7 @@
 This is an exercise for Java EE.
 ================================
 这是一个学习Java EE过程中的练习，主要涉及Java Web。
-其中包括以下几个部分：
+其中包括以下几个学习部分：
  - 1. Java 基础增强
  - 2. XML 开发
  - 3. WEB 开发入门
