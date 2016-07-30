@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<shiporder xmlns="http://www.lyleonard.com"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.lyleonard.com shiporder.xsd" orderid="000001">
+	<orderperson>XXXX</orderperson>
+	<shipto>
+		<name>TaiShan</name>
+		<address>HuangPulu</address>
+		<city>ShangHai</city>
+		<country>China</country>
+	</shipto>
+	<item>
+		<title>HangYun</title>
+		<note>ZZZZZ...</note>
+		<quantity>12</quantity>
+		<price>1236.00</price>
+	</item>
+</shiporder>
