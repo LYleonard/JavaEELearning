@@ -1,0 +1,8 @@
+#ºöÂÔµÄÎÄ¼ş
+/RemoteSystemsTempFiles/
+.metadata/
+.settings/
+.classpath
+.project
+*.jar
+/Servers
