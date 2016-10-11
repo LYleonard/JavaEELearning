@@ -1,6 +1,9 @@
 package com.wrp.mybatis.po;
 
 import java.util.Date;
+import java.util.List;
+
+import org.apache.logging.log4j.core.config.Order;
 
 /**   
 * @Title: User.java 
@@ -17,6 +20,8 @@ public class User {
 	private String sex;
 	private String address;
 	
+	// 用户创建的订单列表
+	private List<Order> ordersList;
 	
 	public int getId() {
 		return id;
@@ -47,6 +52,13 @@ public class User {
 	}
 	public void setAddress(String address) {
 		this.address = address;
+	}
+	
+	public List<Order> getOrdersList() {
+		return ordersList;
+	}
+	public void setOrdersList(List<Order> ordersList) {
+		this.ordersList = ordersList;
 	}
 	@Override
 	public String toString() {
