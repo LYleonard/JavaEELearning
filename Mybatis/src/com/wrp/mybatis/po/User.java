@@ -1,5 +1,6 @@
 package com.wrp.mybatis.po;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -12,7 +13,11 @@ import org.apache.logging.log4j.core.config.Order;
 * @date 2016年10月8日 上午10:18:10 
 * @version V1.0   
 */
-public class User {
+public class User implements Serializable{
+	/**
+	 * 调用pojo类user实现序列化接口
+	 */
+	private static final long serialVersionUID = 1L;
 	//属性名和数据库中表的字段对应
 	private int id;
 	private String username;

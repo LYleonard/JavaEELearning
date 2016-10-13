@@ -86,4 +86,57 @@ public class OrdersMapperCustomTest {
 			System.out.println(user);
 		}
 	}
+	
+	// 测试一级缓存
+	@Test
+	public void testCache1Level() throws Exception{
+		SqlSession sqlSession = sqlSessionFactory.openSession();
+		UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+		
+		// 下次查询使用一个SqlSession
+		// 第一次发出请求，查询id为1的用户
+		User user1 = userMapper.findUserById(1);
+		System.out.println(user1);
+		
+		// 如果sqlSession去执行commit操作（执行插入、更新、删除），清空SqlSession中的一级缓存，这样做的目的为了让缓存中存储的是最新的信息，避免脏读。
+		// 更新user1的信息
+		user1.setUsername("测试用户1");
+		userMapper.updateUser(user1);
+		
+		// 第二次发出请求，查询id为1的用户
+		User user2 = userMapper.findUserById(1);
+		System.out.println(user2);
+	}
+	
+	// 测试二级缓存
+	@Test
+	public void testCache2Level() throws Exception{
+		SqlSession sqlSession1 = sqlSessionFactory.openSession();
+		SqlSession sqlSession2 = sqlSessionFactory.openSession();
+		SqlSession sqlSession3 = sqlSessionFactory.openSession();
+		
+		UserMapper userMapper1 = sqlSession1.getMapper(UserMapper.class);
+		// 第一次发出请求，查询id为1的用户
+		User user1 = userMapper1.findUserById(1);
+		System.out.println(user1);
+		// 这里执行关闭操作，将sqlsession中的数据写到二级缓存
+		sqlSession1.close();
+		
+		// 使用sqlSession3执行commit()操作
+		UserMapper userMapper3 = sqlSession3.getMapper(UserMapper.class);
+		User user = userMapper3.findUserById(1);
+		user.setUsername("李颖");
+		userMapper3.updateUser(user);
+		// 执行提交，清空UserMapper下的二级缓存
+		sqlSession3.commit();
+		sqlSession3.close();
+		
+		
+		UserMapper userMapper2 = sqlSession2.getMapper(UserMapper.class);
+		// 第二次发出请求，查询id为1的用户
+		User user2 = userMapper2.findUserById(1);
+		System.out.println(user2);
+		sqlSession2.close();
+	}
+	
 }
