@@ -1,0 +1,1 @@
+该项目是一个Mybatis的逆向工程。用于生成相应的po类和Mapper.java、Mapper.xml。
