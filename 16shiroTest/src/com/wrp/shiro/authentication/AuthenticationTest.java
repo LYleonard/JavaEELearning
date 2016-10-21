@@ -53,4 +53,34 @@ public class AuthenticationTest {
 		
 		System.out.println("是否通过认证：" + isAuthenticated);
 	}
+	
+	//测试自定义realm
+	@Test
+	public void testCustomRealm(){
+		// 构造SecurityManager环境
+		// 创建SecurityManager工厂
+		Factory<SecurityManager> factory = new IniSecurityManagerFactory("classpath:shirorealm.ini");
+		// 创建SecurityManager
+		SecurityManager securityManager = factory.getInstance();
+		
+		// 将SecurityManager配置到当前的运行环境中
+		SecurityUtils.setSecurityManager(securityManager);
+		
+		// 从SecurityUtils中创建一个subject
+		Subject subject = SecurityUtils.getSubject();
+		
+		// 认证前准备token（令牌）
+		UsernamePasswordToken token = new UsernamePasswordToken("zhangsan", "111111");
+		
+		// 执行认证提交
+		try {
+			subject.login(token);
+		} catch (AuthenticationException e) {
+			e.printStackTrace();
+		}
+		
+		boolean isAuthenticated = subject.isAuthenticated();
+		System.out.println("是否通过认证：" + isAuthenticated);
+		
+	}
 }
