@@ -2,7 +2,6 @@ package com.wrp.shiro.authentication;
 
 import org.apache.shiro.crypto.hash.Md5Hash;
 import org.apache.shiro.crypto.hash.SimpleHash;
-import org.omg.CosNaming.NamingContextExtPackage.StringNameHelper;
 
 /**   
 * @Title: MD5Test.java 
